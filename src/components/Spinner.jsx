@@ -4,7 +4,7 @@ import loading from './loading.gif'
 export class Spinner extends Component {
   render() {
     return (
-      <div className='fixed top-9 left-1/2'>
+      <div className='ml-[100px] md:ml-[600px]'>
         <img src={loading} alt="loading" />
       </div>
     )
