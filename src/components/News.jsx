@@ -20,15 +20,19 @@ export class News extends Component {
 
     }
   async update(){
+    this.props.setProgress(10);
      let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&apiKey=4e53aed4b2244290a5c2a9b968aa97d6&page=${this.state.page}&pageSize=${this.props.pageSize}`
     this.setState({loading: true})
+     this.props.setProgress(30);
     let data = await fetch(url);
+     this.props.setProgress(60);
     let parsed = await data.json();
     this.setState({
         articles: parsed.articles,
         totalResults: parsed.totalResults,
         loading: false
        })
+       this.props.setProgress(100);
   }
   async componentDidMount(){
      this.update()
@@ -68,9 +72,9 @@ export class News extends Component {
         hasMore={this.state.articles.length !== this.state.totalResults}
         loader={<Spinner/>}
       >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4">
-       {this.state.articles.map((ele)=>{
-        return <div key={ele.url+ele.publishedAt+ele.author}>
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3  gap-2">
+       {this.state.articles.map((ele,index)=>{
+        return <div key={ele.url || index}>
              <NewsItem 
              title = {ele.title} 
              description = {ele.description}

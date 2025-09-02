@@ -62,7 +62,7 @@ export class Navbar extends Component {
                 Home
               </Link>
               <Link
-                to="/busniess"
+                to="/business"
                 className="block text-gray-700 hover:text-blue-600"
                 onClick={this.closeMenu}
               >
