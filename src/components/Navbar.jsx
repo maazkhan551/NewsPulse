@@ -1,26 +1,17 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {Link} from "react-router-dom"
-export class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
-  }
-
-  toggleMenu = () => {
-    this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
+ const Navbar = ()=> {
+  const [isOpen,setisOpen] = useState(false);
+  let toggleMenu = () => {
+    setisOpen((prev)=> !prev);
   };
 
-  closeMenu = () => {
-    this.setState({ isOpen: false });
+  const closeMenu = () => {
+     setisOpen(false);
   };
-
-  render() {
-    const { isOpen } = this.state;
 
     return (
-      <nav className="bg-white shadow-md  w-full top-0 left-0 z-50">
+      <nav className="bg-white shadow-md  w-full top-0 left-0 z-50 fixed">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             
@@ -43,7 +34,7 @@ export class Navbar extends Component {
 
             {/* Mobile Hamburger */}
             <div className="md:hidden flex items-center">
-              <button onClick={this.toggleMenu}>
+              <button onClick={toggleMenu}>
                 {isOpen ? "✖" : "☰"}
               </button>
             </div>
@@ -57,56 +48,56 @@ export class Navbar extends Component {
               <Link
                 to="/"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 Home
               </Link>
               <Link
                 to="/business"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 business
               </Link>
               <Link
                 to="/entertainment"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 entertainment
               </Link>
               <Link
                 to="/general"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 general
               </Link>
               <Link
                 to="/health"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 health
               </Link>
               <Link
                 to="/science"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 science
               </Link>
               <Link
                 to="/sports"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 sports
               </Link>
               <Link
                 to="/technology"
                 className="block text-gray-700 hover:text-blue-600"
-                onClick={this.closeMenu}
+                onClick={ closeMenu}
               >
                 technology
               </Link>
@@ -115,7 +106,6 @@ export class Navbar extends Component {
         )}
       </nav>
     );
-  }
 }
 
 export default Navbar;
